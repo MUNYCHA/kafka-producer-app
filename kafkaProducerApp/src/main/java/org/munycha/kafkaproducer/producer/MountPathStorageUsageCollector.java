@@ -8,17 +8,21 @@ import java.util.List;
 
 public class MountPathStorageUsageCollector {
 
+
+    private static final String HOST_FS =
+            System.getenv().getOrDefault("HOST_FS", "");
+
     public static List<MountPathStorageUsage> collect(List<String> paths) {
         List<MountPathStorageUsage> result = new ArrayList<>();
 
         for (String p : paths) {
             try {
-                Path path = Paths.get(p);
-                if (!Files.exists(path)) {
+                Path realPath = resolvePath(p);
+                if (!Files.exists(realPath)) {
                     continue;
                 }
 
-                FileStore store = Files.getFileStore(path);
+                FileStore store = Files.getFileStore(realPath);
 
                 long total = store.getTotalSpace();
                 long usable = store.getUsableSpace();
@@ -39,6 +43,13 @@ public class MountPathStorageUsageCollector {
             }
         }
         return result;
+    }
+
+    private static Path resolvePath(String path) {
+        if (HOST_FS.isEmpty()) {
+            return Paths.get(path);
+        }
+        return Paths.get(HOST_FS + path);
     }
 }
 

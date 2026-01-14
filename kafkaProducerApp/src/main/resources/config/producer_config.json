@@ -3,28 +3,28 @@
 
   "identity": {
     "system": {
-      "id": "system-A",
-      "name": "Payment Platform"
+      "id": "system-E",
+      "name": "ប្រព័ន្ធគ្រប់គ្រងទិន្នន័យប្រាក់ខែបុគ្គលិក"
     },
     "server": {
       "name": "linux-mint-vm",
-      "ip": "192.168.60.135"
+      "ip": "192.168.60.11"
     }
   },
 
   "files": [
-    { "path": "/home/kafkaproducer/test_log_file/app1.log", "topic": "app1-topic" },
-    { "path": "/home/kafkaproducer/test_log_file/app2.log", "topic": "app2-topic" },
-    { "path": "/home/kafkaproducer/test_log_file/app3.log", "topic": "app3-topic" },
-    { "path": "/home/kafkaproducer/test_log_file/app4.log", "topic": "app4-topic" },
-    { "path": "/home/kafkaproducer/test_log_file/system.log", "topic": "system-topic" },
-    { "path": "/home/kafkaproducer/test_log_file/server.log", "topic": "server-topic" }
+    { "path": "/data/input/logs/app1.log", "topic": "app1-topic" },
+    { "path": "/data/input/logs/app2.log", "topic": "app2-topic" },
+    { "path": "/data/input/logs/app3.log", "topic": "app3-topic" },
+    { "path": "/data/input/logs/app4.log", "topic": "app4-topic" },
+    { "path": "/data/input/logs/system.log", "topic": "system-topic" },
+    { "path": "/data/input/logs/server.log", "topic": "server-topic" }
   ],
 
   "storageMonitoring": {
     "enabled": true,
-    "topic": "server-storage-usage",
-    "paths": ["/", "/home", "/var/log"],
+    "topic": "server-storage-snapshot",
+    "paths": ["/","/mnt/data-pressure","/mnt/medium-usage","/mnt/high-usage","/run"],
     "intervalHours": 12
   }
 

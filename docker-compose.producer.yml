@@ -1,16 +1,20 @@
+version: "3.8"
+
 services:
   producer:
     build:
       context: .
       dockerfile: Dockerfile.producer
+
     image: kafka-producer:1.0
     container_name: kafka-producer
     restart: unless-stopped
 
     environment:
-      - TZ=Asia/Phnom_Penh
+      TZ: Asia/Phnom_Penh
+      HOST_FS: /hostfs
 
     volumes:
       - ./release/config:/app/config:ro
-      - ./runtime/producer/logs:/data/input/logs:ro
-
+      - /home/kafkaproducer/test_log_file:/data/input/logs:ro
+      - /:/hostfs:ro
