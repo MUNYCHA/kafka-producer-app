@@ -32,6 +32,8 @@
     </dependencies>
 
     <build>
+        <finalName>kafka-producer</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

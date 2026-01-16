@@ -50,7 +50,7 @@ public class ServerStorageMonitor implements Runnable {
             producer.send(record, (metadata, exception) -> {
                 if (exception == null) {
                     System.out.println(
-                            "SYSTEM STORAGE SNAPSHOT SENT | "
+                            "SERVER STORAGE SNAPSHOT SENT | "
                                     + "server=" + serverStorageSnapshot.getServerName()
                                     + " | topic=" + metadata.topic()
                                     + " | partition=" + metadata.partition()
@@ -58,7 +58,7 @@ public class ServerStorageMonitor implements Runnable {
                     );
                 } else {
                     System.err.println(
-                            "FAILED TO SEND SYSTEM STORAGE SNAPSHOT | "
+                            "FAILED TO SEND SERVER STORAGE SNAPSHOT | "
                                     + "server=" + serverStorageSnapshot.getServerName()
                                     + " | topic=" + record.topic()
                     );
